@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()) {
+            String pw = sc.nextLine();
+            if(verify(pw)) {
+                System.out.println("OK");
+            }else {
+                System.out.println("NG");
+            }
+        }
+    }
+    public static boolean verify(String pw) {
+        if (pw == null || pw.length() <= 8) {
+            return false;
+        }
+
+        if (format(pw) && repetition(pw)) {
+            return true;
+        }
+        return false;
+    }
+    public static boolean format(String pw) {
+        //格式是否正确 第二条
+        int big = 0,small = 0,figure = 0,other = 0; //大写 小写 数字 其他
+        for(Character ch : pw.toCharArray()) {
+            if (ch >= 'A' && ch <= 'Z') {
+                big = 1;
+            } else if (ch >= 'a' && ch <= 'z') {
+                small = 1;
+            } else if (ch >= '0' && ch <= '9') {
+                figure = 1;
+            } else {
+                other = 1;
+            }
+        }
+        if(big + small +figure + other >= 3) {
+            return true;
+        }
+        return false;
+    }
+    public static boolean repetition(String pw) {
+        //不能有相同长度超2的子串重复
+        for (int i = 0; i < pw.length() - 3; i++) {
+            String s = pw.substring(i, i + 3);
+            String temp = pw.substring(i + 3, pw.length());
+            if (temp.contains(s)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
