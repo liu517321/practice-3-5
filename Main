@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class Main  {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            int t = n*n;
+            if (n < 10){
+                if ((t-n)%10 == 0){
+                    System.out.println("Yes!");
+                }else {
+                    System.out.println("No!");
+                }
+            }else {
+                if ((t-n)%100 == 0){
+                    System.out.println("Yes!");
+                }else {
+                    System.out.println("No!");
+                }
+            }
+        }
+    }
+}
